@@ -10,6 +10,8 @@ async function checkJwtToken(req, res, next)
             res.locals.decodedJwt = decodedJwt;
 
             next();
+            console.log(decodedJwt);
+            console.log(decodedJwt.message);
 
         } else {
             throw { message: "You don't have permission to access!", statusCode: 500 };
