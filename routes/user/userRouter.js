@@ -46,5 +46,9 @@ router.post(
 router.get("/get-user-info", jwtMiddleware, fetchUserInfo);
 
 router.put("");
+//come back to this
+
+router.delete("");
+//come back to this
 
 module.exports = router;
