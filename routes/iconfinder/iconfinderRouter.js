@@ -6,8 +6,6 @@ const apiKey = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
 const client = require("iconFinder")(apiKey, clientId);
 
-const fetch = require("node-fetch");
-
 const url =
   "https://api.iconfinder.com/v4/categories/social%20media/iconsets?count=5";
 const options = {
