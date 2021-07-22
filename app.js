@@ -4,6 +4,12 @@ const cors = require("cors");
 
 const app = express();
 
+const ErrorMessageHandlerClass = require("./routes/utils/errorMessageHandlerClass");
+const errorController = require("./routes/utils/errorController");
+const userRouter = require("./routes/user/userRouter");
+const iconFinderRouter = require("./routes/iconFinder/iconFinderRouter");
+app.use(cors());
+
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
@@ -11,8 +17,9 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//app.use("/", indexRouter);
-//app.use("/users", usersRouter);
+app.use("/api/userRouter", userRouter);
+app.use("/api/iconFinder", iconFinderRouter);
+app.use("/api/questionnaire", questionnaireRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -20,14 +27,16 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+app.all("*", function (req, res, next) {
+  // * refers to encapsulating and running all http requests
+  next(
+    new ErrorMessageHandlerClass(
+      `Cannot find ${req.originalUrl} on this server. Check your URL!`,
+      400
+    )
+  );
 });
+
+app.use(errorController);
 
 module.exports = app;
