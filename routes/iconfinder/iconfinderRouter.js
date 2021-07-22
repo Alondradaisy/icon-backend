@@ -2,8 +2,26 @@ const express = require("express");
 const router = express.Router();
 const jwtMiddleWare = require("../utils/jwtMiddleware");
 
-function (req, res) {
+const apiKey = process.env.API_KEY;
+const clientId = process.env.CLIENT_ID;
+const client = require("iconFinder")(apiKey, clientId);
 
-}
+const fetch = require("node-fetch");
+
+const url =
+  "https://api.iconfinder.com/v4/categories/social%20media/iconsets?count=5";
+const options = {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    Authorization:
+      "Bearer X0vjEUN6KRlxbp2DoUkyHeM0VOmxY91rA6BbU5j3Xu6wDodwS0McmilLPBWDUcJ1",
+  },
+};
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
 
 module.exports = router;
