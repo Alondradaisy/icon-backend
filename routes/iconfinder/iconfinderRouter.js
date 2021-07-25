@@ -4,10 +4,10 @@ const jwtMiddleWare = require("../utils/jwtMiddleware");
 
 const apiKey = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
-const client = require("iconFinder")(apiKey, clientId);
+const icons = require("iconFinder")(apiKey, clientId);
 
-const url =
-  "https://api.iconfinder.com/v4/categories/social%20media/iconsets?count=5";
+const url = "https://api.iconfinder.com/v4/icons/search?query=social&count=5";
+
 const options = {
   method: "GET",
   headers: {
