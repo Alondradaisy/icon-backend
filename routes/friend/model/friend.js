@@ -7,7 +7,7 @@ const FriendSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
-  email: {
+  emailAddress: {
     type: String,
   },
 });
