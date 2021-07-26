@@ -6,7 +6,7 @@ const apiKey = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
 const icons = require("iconFinder")(apiKey, clientId);
 
-const url = "https://api.iconfinder.com/v4/icons/search?query=social&count=5";
+const url = "https://api.iconfinder.com/v4/icons/search?query=social&count=10";
 
 const options = {
   method: "GET",
@@ -18,7 +18,7 @@ const options = {
 };
 
 fetch(url, options)
-  .then((res) => res.json())
+  .then((res) => res.json(icons))
   .then((json) => console.log(json))
   .catch((err) => console.error("error:" + err));
 
