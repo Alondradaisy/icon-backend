@@ -19,7 +19,9 @@ const options = {
 
 fetch(url, options)
   .then((res) => res.json(icons))
+
   .then((json) => console.log(json))
+
   .catch((err) => console.error("error:" + err));
 
 module.exports = router;

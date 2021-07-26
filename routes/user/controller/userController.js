@@ -28,7 +28,7 @@ async function createProfile(req, res, next) {
     });
     await createdProfile.save();
 
-    res.json({ message: "You can successfully created a profile" });
+    res.json({ message: "You have successfully created a profile" });
   } catch (e) {
     next(e);
   }
