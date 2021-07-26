@@ -9,6 +9,7 @@ const errorController = require("./routes/utils/errorController");
 const userRouter = require("./routes/user/userRouter");
 const iconFinderRouter = require("./routes/iconFinder/iconFinderRouter");
 app.use(cors());
+const questionnaireRouter = require("./routes/questionnaire/questionnaireRouter");
 
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
@@ -20,11 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/userRouter", userRouter);
 app.use("/api/iconFinder", iconFinderRouter);
 app.use("/api/questionnaire", questionnaireRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.all("*", function (req, res, next) {
